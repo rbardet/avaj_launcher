@@ -1,3 +1,5 @@
-public abstract class Flyable {
+
+public abstract interface Flyable {
+
 	public abstract void updateConditions();
 }

@@ -1,0 +1,40 @@
+
+public abstract class Aircraft implements Flyable {
+
+	protected long id;
+	protected String name;
+	protected String type;
+	protected Coordinates coordinates;
+
+	protected Aircraft(long p_id, String p_name, String p_type, Coordinates p_coordinate) {
+		this.id = p_id;
+		this.name = p_name;
+		this.type = p_type;
+		this.coordinates = p_coordinate;
+	}
+
+	public abstract void updateConditions();
+
+	public long getId() {
+		return this.id;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public String getType() {
+		return this.type;
+	}
+
+	public Coordinates getCoordinates() {
+		return this.coordinates;
+	}
+
+}
+
+// + for public 
+// - for private
+// # for protected
+// ~ for package or default visibility (visible to classes in the same package)
+
