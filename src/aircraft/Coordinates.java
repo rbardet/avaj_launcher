@@ -1,3 +1,7 @@
+package aircraft;
+
+import simulation.Main;
+import simulation.SimulationIO;
 
 public class Coordinates {
 
@@ -49,6 +53,7 @@ public class Coordinates {
 			}
 			return true;
 		} catch (NumberFormatException err) {
+			SimulationIO.OUTPUT.delete();
 			System.err.println(Main.ERROR);
 		}
 		return false;

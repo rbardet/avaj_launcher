@@ -1,3 +1,8 @@
+package aircraft;
+
+import simulation.Main;
+import simulation.SimulationIO;
+import weather.WeatherTower;
 
 public class Helicopter extends Aircraft {
 

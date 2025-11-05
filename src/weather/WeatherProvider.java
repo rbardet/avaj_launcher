@@ -1,3 +1,6 @@
+package weather;
+
+import aircraft.Coordinates;
 
 public class WeatherProvider {
 
