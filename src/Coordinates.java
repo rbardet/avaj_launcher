@@ -9,6 +9,9 @@ public class Coordinates {
 		this.longitude = p_longitude;
 		this.latitute = p_latitude;
 		this.height = p_height;
+		if (this.height > 100) {
+			this.height = 100;
+		}
 	}
 
 	public int getLongitude() {
@@ -23,6 +26,21 @@ public class Coordinates {
 		return this.height;
 	}
 
+	public void setLongitude(int longitude) {
+		this.longitude = longitude;
+	}
+
+	public void setLatitute(int latitude) {
+		this.latitute = latitude;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+		if (this.height > 100) {
+			this.height = 100;
+		}
+	}
+
 	public static boolean isValidCoord(String longitude, String latitude, String height) {
 		try {
 			int Iheight = Integer.parseInt(height);
@@ -30,9 +48,8 @@ public class Coordinates {
 				return false;
 			}
 			return true;
-		} catch (Exception err) {
+		} catch (NumberFormatException err) {
 			System.err.println(Main.ERROR);
-			err.printStackTrace();
 		}
 		return false;
 	}

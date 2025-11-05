@@ -13,8 +13,6 @@ public abstract class Aircraft implements Flyable {
 		this.coordinates = p_coordinate;
 	}
 
-	public abstract void updateConditions();
-
 	public long getId() {
 		return this.id;
 	}
@@ -31,6 +29,18 @@ public abstract class Aircraft implements Flyable {
 		return this.coordinates;
 	}
 
+	public String getIdentity() {
+		String Identity = this.getType() + "#" + this.getName() + "(" + this.getId() + ")";
+		return Identity;
+	}
+
+	public boolean IsOnTheGround() {
+		if (this.coordinates.getHeight() <= 0) {
+			return (true);
+		} else {
+			return (false);
+		}
+	}
 }
 
 // + for public 

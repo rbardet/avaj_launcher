@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SimulationIO {
-	private final static String FILENAME = "./bin/Simulation.txt";
+
+	private final static String FILENAME = "Simulation.txt";
 	public static File INPUT;
 	public final static File OUTPUT = new File(FILENAME);
 	public static PrintWriter writer;
@@ -24,10 +25,8 @@ public class SimulationIO {
 
 			OUTPUT.createNewFile();
 			writer = new PrintWriter(OUTPUT);
-			System.out.println("Simulation file created");
 		} catch (IOException err) {
 			System.out.println(Main.ERROR);
-			err.printStackTrace();
 		}
 	}
 
@@ -41,7 +40,6 @@ public class SimulationIO {
 			return lines;
 		} catch (IOException err) {
 			System.out.println(Main.ERROR);
-			err.printStackTrace();
 		}
 		return null;
 	}

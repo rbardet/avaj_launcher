@@ -4,21 +4,25 @@ import java.util.List;
 
 public class Tower {
 
-	private List<Flyable> observers;
+	private final List<Flyable> observers;
 
 	public Tower() {
-		this.observers = new ArrayList<Flyable>();
+		this.observers = new ArrayList<>();
 	}
 
 	public void register(Flyable p_flyable) {
-		String Identity = ((Aircraft) p_flyable).getType() + "#" + ((Aircraft) p_flyable).getName() + "(" + ((Aircraft) p_flyable).getId() + ")";
-		SimulationIO.writer.println("Tower says: " + Identity + " registered to weather tower.");
+		SimulationIO.writer.println("Tower says: " + ((Aircraft) p_flyable).getIdentity() + " registered to weather tower.");
 		this.observers.add(p_flyable);
 	}
 
 	public void unregister(Flyable p_flyable) {
-		String Identity = ((Aircraft) p_flyable).getType() + "#" + ((Aircraft) p_flyable).getName() + "(" + ((Aircraft) p_flyable).getId() + ")";
-		SimulationIO.writer.println("Tower says: " + Identity + " unregistered to weather tower.");
+		SimulationIO.writer.println("Tower says: " + ((Aircraft) p_flyable).getIdentity() + " unregistered to weather tower.");
 		this.observers.remove(p_flyable);
+	}
+
+	protected void conditionChanged() {
+		for (int i = 0; i < this.observers.size(); i++) {
+			this.observers.get(i).updateConditions();
+		}
 	}
 }

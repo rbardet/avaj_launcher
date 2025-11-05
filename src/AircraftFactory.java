@@ -1,3 +1,4 @@
+
 public class AircraftFactory {
 
 	private long id = 0;
@@ -17,10 +18,14 @@ public class AircraftFactory {
 	public Flyable newAircraft(String p_type, String p_name, Coordinates p_coordinates) {
 		this.id++;
 		return switch (p_type) {
-			case "JetPlane" -> new JetPlane(this.id, p_name, p_coordinates, "JetPlane");
-			case "Helicopter" -> new Helicopter(this.id, p_name, p_coordinates, "Helicopter");
-			case "Baloon" -> new Baloon(this.id, p_name, p_coordinates, "Baloon");
-			default -> null;
+			case "JetPlane" ->
+				new JetPlane(this.id, p_name, p_coordinates, "JetPlane");
+			case "Helicopter" ->
+				new Helicopter(this.id, p_name, p_coordinates, "Helicopter");
+			case "Baloon" ->
+				new Baloon(this.id, p_name, p_coordinates, "Baloon");
+			default ->
+				null;
 		};
 	}
 
