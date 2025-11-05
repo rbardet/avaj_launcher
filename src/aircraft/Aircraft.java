@@ -43,9 +43,3 @@ public abstract class Aircraft implements Flyable {
 		}
 	}
 }
-
-// + for public 
-// - for private
-// # for protected
-// ~ for package or default visibility (visible to classes in the same package)
-
