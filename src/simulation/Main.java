@@ -19,8 +19,8 @@ public class Main {
 
 	public static void CreateFlyable(List<String> content) {
 		try {
-			TimeToRun = Integer.parseInt(content.getFirst());
-			content.removeFirst();
+			TimeToRun = Integer.parseInt(content.get(0));
+			content.remove(0);
 			WeatherTower _tower = new WeatherTower();
 			for (String c : content) {
 				String[] args = c.split(" ");
@@ -37,6 +37,7 @@ public class Main {
 				Flyable.registerTower(_tower);
 			}
 		} catch (NumberFormatException err) {
+			System.out.println("Error: scenario loop need to be an integer");
 			SimulationIO.OUTPUT.delete();
 		} catch (CustomExecption err) {
 			err.printStackTrace();
