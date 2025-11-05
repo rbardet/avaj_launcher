@@ -1,10 +1,10 @@
-src/aircraft/Coordinates.java
 src/aircraft/Aircraft.java
 src/aircraft/Flyable.java
 src/aircraft/Helicopter.java
 src/aircraft/Baloon.java
 src/aircraft/JetPlane.java
 src/aircraft/AircraftFactory.java
+src/simulation/Coordinates.java
 src/simulation/Main.java
 src/simulation/SimulationIO.java
 src/execption/CustomExecption.java

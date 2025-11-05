@@ -1,6 +1,6 @@
 package weather;
 
-import aircraft.Coordinates;
+import simulation.Coordinates;
 
 public class WeatherTower extends Tower {
 

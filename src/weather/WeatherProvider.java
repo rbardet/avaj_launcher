@@ -1,13 +1,13 @@
 package weather;
 
-import aircraft.Coordinates;
+import simulation.Coordinates;
 
 public class WeatherProvider {
 
 	private final static String weather[] = {"RAIN", "FOG", "SUN", "SNOW"};
 	private static WeatherProvider instance = null;
 
-	public WeatherProvider() {
+	private WeatherProvider() {
 	}
 
 	public static synchronized WeatherProvider getInstance() {

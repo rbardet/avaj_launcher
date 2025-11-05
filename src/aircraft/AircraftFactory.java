@@ -1,5 +1,7 @@
 package aircraft;
 
+import simulation.Coordinates;
+
 public class AircraftFactory {
 
 	private long id = 0;

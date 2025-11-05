@@ -1,7 +1,7 @@
 package simulation;
 
 import aircraft.AircraftFactory;
-import aircraft.Coordinates;
+import aircraft.Flyable;
 import execption.CustomExecption;
 import java.util.List;
 import weather.WeatherTower;
@@ -15,13 +15,13 @@ public class Main {
 	private final static int LATITUDE = 3;
 	private final static int HEIGHT = 4;
 	public final static String ERROR = "Invalid scenario";
-	public final static WeatherTower _tower = new WeatherTower();
 	private final static AircraftFactory factory = AircraftFactory.getInstance();
 
 	public static void CreateFlyable(List<String> content) {
 		try {
 			TimeToRun = Integer.parseInt(content.getFirst());
 			content.removeFirst();
+			WeatherTower _tower = new WeatherTower();
 			for (String c : content) {
 				String[] args = c.split(" ");
 				if (args.length != 5 || !AircraftFactory.isValidType(args[TYPE]) || !Coordinates.isValidCoord(args[LONGITUDE], args[LATITUDE], args[HEIGHT])) {
@@ -34,6 +34,7 @@ public class Main {
 					);
 					_tower.register(factory.newAircraft(args[TYPE], args[NAME], coord));
 				}
+				Flyable.registerTower(_tower);
 			}
 		} catch (NumberFormatException err) {
 			SimulationIO.OUTPUT.delete();
@@ -53,7 +54,7 @@ public class Main {
 			CreateFlyable(content);
 			while (TimeToRun > 0) {
 				TimeToRun--;
-				_tower.changeWeather();
+				Flyable.changeAircraftWeather();
 			}
 		} catch (CustomExecption err) {
 			err.printStackTrace();

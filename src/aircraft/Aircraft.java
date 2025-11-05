@@ -1,6 +1,8 @@
 package aircraft;
 
-public abstract class Aircraft implements Flyable {
+import simulation.Coordinates;
+
+public abstract class Aircraft extends Flyable {
 
 	protected long id;
 	protected String name;

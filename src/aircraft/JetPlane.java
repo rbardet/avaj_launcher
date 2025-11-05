@@ -1,6 +1,6 @@
 package aircraft;
 
-import simulation.Main;
+import simulation.Coordinates;
 import simulation.SimulationIO;
 import weather.WeatherTower;
 
@@ -39,7 +39,7 @@ public class JetPlane extends Aircraft {
 
 		if (this.IsOnTheGround()) {
 			SimulationIO.writer.println(this.getIdentity() + ": landing.");
-			Main._tower.unregister(this);
+			Flyable.weatherTower.unregister(this);
 		}
 	}
 }
