@@ -13,15 +13,14 @@ public class Main {
 	public final static WeatherTower _tower = new WeatherTower();
 	private final static AircraftFactory factory = AircraftFactory.getInstance();
 
-	public static boolean CreateFlyable(List<String> content) {
+	public static void CreateFlyable(List<String> content) {
 		try {
 			TimeToRun = Integer.parseInt(content.getFirst());
 			content.removeFirst();
 			for (String c : content) {
 				String[] args = c.split(" ");
 				if (args.length != 5 || !AircraftFactory.isValidType(args[TYPE]) || !Coordinates.isValidCoord(args[LONGITUDE], args[LATITUDE], args[HEIGHT])) {
-					SimulationIO.OUTPUT.delete();
-					return (false);
+					throw new CustomExecption("Error: Invalid Argument in input file");
 				} else {
 					Coordinates coord = new Coordinates(
 							Integer.parseInt(args[LONGITUDE]),
@@ -31,40 +30,46 @@ public class Main {
 					_tower.register(factory.newAircraft(args[TYPE], args[NAME], coord));
 				}
 			}
-			return true;
 		} catch (NumberFormatException err) {
 			SimulationIO.OUTPUT.delete();
-			System.err.println(ERROR);
+		} catch (CustomExecption err) {
+			err.printStackTrace();
 		}
-		return (false);
 	}
 
 	public static void Simulation() {
-		List<String> content = SimulationIO.OpenFile(SimulationIO.INPUT);
-		if (content.isEmpty()) {
-			return;
-		}
+		try {
+			List<String> content = SimulationIO.OpenFile(SimulationIO.INPUT);
+			if (content.isEmpty()) {
+				throw new CustomExecption("Error: Empty input file");
+			}
 
-		SimulationIO.CreateOutput();
-		CreateFlyable(content);
-		while (TimeToRun > 0) {
-			TimeToRun--;
-			_tower.changeWeather();
+			SimulationIO.CreateOutput();
+			CreateFlyable(content);
+			while (TimeToRun > 0) {
+				TimeToRun--;
+				_tower.changeWeather();
+			}
+		} catch (CustomExecption err) {
+			err.printStackTrace();
 		}
 	}
 
 	public static void main(String[] args) {
-		if (args.length != 1) {
-			System.out.println(ERROR);
-		}
+		try {
+			if (args.length != 1) {
+				throw new CustomExecption("Error: need only 1 file as arg");
+			}
 
-		SimulationIO.setInput(args[0]);
-		if (!SimulationIO.INPUT.isFile() && !SimulationIO.INPUT.canRead()) {
-			System.out.println(ERROR);
-			return;
-		}
+			SimulationIO.setInput(args[0]);
+			if (!SimulationIO.INPUT.isFile() && !SimulationIO.INPUT.canRead()) {
+				throw new CustomExecption("Error: not a file or can't read it");
+			}
 
-		Simulation();
-		SimulationIO.writer.close();
+			Simulation();
+			SimulationIO.writer.close();
+		} catch (CustomExecption err) {
+			err.printStackTrace();
+		}
 	}
 }
